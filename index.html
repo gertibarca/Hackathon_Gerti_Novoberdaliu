@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futuristic City Explorer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Control Panel -->
+  <div class="control-panel">
+    <div class="panel-header">
+      <h1>City Builder</h1>
+      <div class="mode-toggle">
+        <button id="dayNightToggle" class="toggle-btn">
+          <span class="toggle-icon">🌙</span>
+          <span class="toggle-text">Night Mode</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="object-palette">
+      <h3>Drag Objects</h3>
+      <div class="palette-grid">
+        <div class="palette-item" data-type="building" data-color="#00FFFF">
+          <div class="building-preview"></div>
+          <span>Neon Building</span>
+        </div>
+        <div class="palette-item" data-type="car" data-color="#FFFF00">
+          <div class="car-preview"></div>
+          <span>Hover Car</span>
+        </div>
+        <div class="palette-item" data-type="streetlight" data-color="#FF00FF">
+          <div class="streetlight-preview"></div>
+          <span>Street Light</span>
+        </div>
+        <div class="palette-item" data-type="billboard" data-color="#00FFFF">
+          <div class="billboard-preview"></div>
+          <span>Billboard</span>
+        </div>
+        <div class="palette-item" data-type="star" data-color="#FFFFFF">
+          <div class="star-preview"></div>
+          <span>Floating Star</span>
+        </div>
+        <div class="palette-item" data-type="planet" data-color="#FF6B6B">
+          <div class="planet-preview"></div>
+          <span>Neon Planet</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-picker-section">
+      <h3>Color Picker</h3>
+      <input type="color" id="colorPicker" value="#00FFFF">
+      <button id="clearCity" class="clear-btn">Clear City</button>
+    </div>
+  </div>
+
+  <!-- Main City Canvas -->
+  <div class="city-canvas" id="cityCanvas">
+    <div class="background-layer"></div>
+    <div class="traffic-layer">
+      <!-- Animated traffic will be generated here -->
+    </div>
+    <div class="objects-layer" id="objectsLayer">
+      <!-- User-placed objects will appear here -->
+    </div>
+    <div class="floating-layer">
+      <!-- Floating elements like stars and clouds -->
+    </div>
+  </div>
+
+  <!-- Selected Object Controls -->
+  <div class="object-controls" id="objectControls" style="display: none;">
+    <button id="deleteObject" class="control-btn delete-btn">Delete</button>
+    <input type="color" id="objectColorPicker" class="control-btn">
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
