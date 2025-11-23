@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Metropolis Architect 3000</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <!-- Control Panel -->
+  <div class="control-panel">
+    <div class="panel-header">
+      <h1>Neon Metropolis Architect 3000</h1>
+      <div class="mode-toggle">
+        <button id="dayNightToggle" class="toggle-btn">
+          <i data-feather="moon"></i>
+          <span class="toggle-text">Night Mode</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="object-palette">
+      <h3>Drag Objects</h3>
+      <div class="palette-grid">
+        <!-- Buildings -->
+        <div class="palette-item" data-type="skyscraper" data-color="#00FFFF">
+          <div class="skyscraper-preview"></div>
+          <span>Skyscraper</span>
+        </div>
+        <div class="palette-item" data-type="arcology" data-color="#FF00FF">
+          <div class="arcology-preview"></div>
+          <span>Arcology</span>
+        </div>
+        <div class="palette-item" data-type="habitat" data-color="#00FF00">
+          <div class="habitat-preview"></div>
+          <span>Habitat Dome</span>
+        </div>
+        
+        <!-- Transportation -->
+        <div class="palette-item" data-type="hovercar" data-color="#FFFF00">
+          <div class="hovercar-preview"></div>
+          <span>Hover Car</span>
+        </div>
+        <div class="palette-item" data-type="monorail" data-color="#FF6600">
+          <div class="monorail-preview"></div>
+          <span>Monorail</span>
+        </div>
+        <div class="palette-item" data-type="spaceship" data-color="#9900FF">
+          <div class="spaceship-preview"></div>
+          <span>Spaceship</span>
+        </div>
+        
+        <!-- Infrastructure -->
+        <div class="palette-item" data-type="streetlight" data-color="#FF00FF">
+          <div class="streetlight-preview"></div>
+          <span>Street Light</span>
+        </div>
+        <div class="palette-item" data-type="billboard" data-color="#00FFFF">
+          <div class="billboard-preview"></div>
+          <span>Billboard</span>
+        </div>
+        <div class="palette-item" data-type="bridge" data-color="#FF9900">
+          <div class="bridge-preview"></div>
+          <span>Suspension Bridge</span>
+        </div>
+        
+        <!-- Nature -->
+        <div class="palette-item" data-type="floatingpark" data-color="#00FF99">
+          <div class="floatingpark-preview"></div>
+          <span>Floating Park</span>
+        </div>
+        <div class="palette-item" data-type="biolumtree" data-color="#99FF00">
+          <div class="biolumtree-preview"></div>
+          <span>Biolum Tree</span>
+        </div>
+        
+        <!-- Space Elements -->
+        <div class="palette-item" data-type="star" data-color="#FFFFFF">
+          <div class="star-preview"></div>
+          <span>Floating Star</span>
+        </div>
+        <div class="palette-item" data-type="planet" data-color="#FF6B6B">
+          <div class="planet-preview"></div>
+          <span>Neon Planet</span>
+        </div>
+        <div class="palette-item" data-type="satellite" data-color="#CCCCCC">
+          <div class="satellite-preview"></div>
+          <span>Satellite</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="object-controls-section">
+      <h3>Object Controls</h3>
+      <div class="control-grid">
+        <div class="control-group">
+          <label>Size</label>
+          <input type="range" id="sizeSlider" min="50" max="200" value="100">
+          <span id="sizeValue">100%</span>
+        </div>
+        <div class="control-group">
+          <label>Rotation</label>
+          <input type="range" id="rotationSlider" min="0" max="360" value="0">
+          <span id="rotationValue">0°</span>
+        </div>
+        <div class="control-group">
+          <label>Opacity</label>
+          <input type="range" id="opacitySlider" min="20" max="100" value="100">
+          <span id="opacityValue">100%</span>
+        </div>
+      </div>
+      
+      <div class="color-picker-group">
+        <label>Color</label>
+        <input type="color" id="colorPicker" value="#00FFFF">
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button id="saveCity" class="action-btn save-btn">
+        <i data-feather="save"></i> Save City
+      </button>
+      <button id="loadCity" class="action-btn load-btn">
+        <i data-feather="folder"></i> Load City
+      </button>
+      <button id="exportCity" class="action-btn export-btn">
+        <i data-feather="download"></i> Export Image
+      </button>
+      <button id="clearCity" class="action-btn clear-btn">
+        <i data-feather="trash-2"></i> Clear City
+      </button>
+      <div class="history-buttons">
+        <button id="undoBtn" class="action-btn undo-btn" disabled>
+          <i data-feather="arrow-left"></i> Undo
+        </button>
+        <button id="redoBtn" class="action-btn redo-btn" disabled>
+          <i data-feather="arrow-right"></i> Redo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main City Canvas -->
+  <div class="city-canvas" id="cityCanvas">
+    <div class="background-layer"></div>
+    <div class="traffic-layer">
+      <!-- Animated traffic will be generated here -->
+    </div>
+    <div class="objects-layer" id="objectsLayer">
+      <!-- User-placed objects will appear here -->
+    </div>
+    <div class="floating-layer">
+      <!-- Floating elements like stars and clouds -->
+    </div>
+  </div>
+
+  <!-- Selected Object Controls -->
+  <div class="object-controls" id="objectControls" style="display: none;">
+    <button id="deleteObject" class="control-btn delete-btn">
+      <i data-feather="x"></i> Delete
+    </button>
+    <button id="duplicateObject" class="control-btn duplicate-btn">
+      <i data-feather="copy"></i> Duplicate
+    </button>
+    <button id="bringForward" class="control-btn forward-btn">
+      <i data-feather="arrow-up"></i> Forward
+    </button>
+    <button id="sendBackward" class="control-btn backward-btn">
+      <i data-feather="arrow-down"></i> Backward
+    </button>
+    <input type="color" id="objectColorPicker" class="control-btn">
+  </div>
+
+  <!-- Notification System -->
+  <div class="notification-container" id="notificationContainer"></div>
+
+  <!-- File Input for Loading -->
+  <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+  <script src="js/main.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>
